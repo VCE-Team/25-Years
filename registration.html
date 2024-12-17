@@ -7,12 +7,12 @@
     <style>
         /* Previous styles remain the same */
         :root {
-            --primary-color: #8B5CF6;
-            --bg-dark: #111827;
+            --primary-color: #B21A0D;
+            --bg-dark: #0c0b0b;
             --text-light: #ffffff;
             --text-gray: #9CA3AF;
-            --navbar-bg: rgba(17, 24, 39, 0.9);
-            --navbar-bg-scroll: rgba(17, 24, 39, 0.95);
+            --navbar-bg: rgba(0, 0, 0, 0.639);
+            --navbar-bg-scroll: rgba(0, 0, 0, 0.639);
             --card-bg: rgba(31, 41, 55, 0.5);
         }
 
@@ -245,117 +245,98 @@
     <div class="form-container">
         <!-- Volunteer Registration Form -->
         <div class="form-section active" id="volunteer-form">
-            <form action="/submit-volunteer" method="POST">
+            <form onsubmit="handleSubmit(event, 'volunteer')">
                 <div class="form-group">
                     <label class="form-label">Full Name</label>
-                    <input type="text" class="form-input" name="fullName" required>
+                    <input type="text" class="form-input" required>
                 </div>
                 <div class="form-group">
                     <label class="form-label">Roll Number</label>
-                    <input type="text" class="form-input" name="rollNumber" pattern="^[A-Za-z0-9]{10}$" required>
+                    <input type="text" class="form-input" pattern="^[A-Za-z0-9]{10}$" title="Roll number must be 10 characters long and can contain letters and numbers" required>
                 </div>
                 <div class="form-group">
                     <label class="form-label">Email</label>
-                    <input type="email" class="form-input" name="email" required>
+                    <input type="email" class="form-input" required>
                 </div>
                 <div class="form-group">
                     <label class="form-label">Department</label>
-                    <select class="form-select" name="department" required>
+                    <select class="form-select" required>
                         <option value="">Select Department</option>
                         <option value="CSE">CSE</option>
                         <option value="ECE">ECE</option>
-                        <option value="ECE">CSD</option>
-                        <option value="ECE">CSM</option>
-                        <option value="ECE">IT</option>
-                        <option value="ECE">EEE</option>
-                        <option value="ECE">CIVIL</option>
-                        <option value="ECE">MECH</option>
-                        <option value="ECE">AI/ML</option>
-                        <option value="ECE">AI/DS</option>
-                        <option value="ECE">MBA</option>
-                        
-                        
-
-                        <!-- Other options -->
+                        <option value="MECH">MECH</option>
+                        <option value="CIVIL">CIVIL</option>
+                        <option value="EEE">EEE</option>
+                        <option value="CSD">CSD</option>
+                        <option value="CSM">CSM</option>
+                        <option value="IT">IT</option>
+                        <option value="AI/DS">AI/DS</option>
+                        <option value="AI/ML">AI/ML</option>
+                        <option value="MBA">MBA</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label class="form-label">Year</label>
-                    <select class="form-select" name="year" required>
+                    <select class="form-select" required>
                         <option value="">Select Year</option>
                         <option value="1">First Year</option>
                         <option value="2">Second Year</option>
                         <option value="3">Third Year</option>
-                        <option value="4">Forth Year</option>
+                        <option value="4">Fourth Year</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label class="form-label">Phone Number</label>
-                    <input type="tel" class="form-input" name="phoneNumber" pattern="[0-9]{10}" required>
+                    <input type="tel" class="form-input" pattern="[0-9]{10}" required>
                 </div>
                 <button type="submit" class="submit-btn">Register as Volunteer</button>
             </form>
-            
         </div>
 
         <!-- Performer Registration Form -->
         <div class="form-section" id="performer-form">
-            <form action="/submit-performer" method="POST">
+            <form onsubmit="handleSubmit(event, 'performer')">
                 <div class="form-group">
                     <label class="form-label">Performance Type</label>
-                    <select class="form-select" name="performanceType" required>
+                    <select class="form-select" id="performance-type" required onchange="handlePerformanceType(this)">
                         <option value="">Select Type</option>
                         <option value="dance">Dance</option>
+                        <option value="music">Music</option>
                         <option value="drama">Drama</option>
-                        <option value="Music">Music</option>
-                        <option value="other">other</option>
-                        <!-- Other options -->
+                        <option value="other">Other</option>
                     </select>
+                    <input type="text" id="other-performance" class="form-input hidden" placeholder="Specify performance type">
                 </div>
                 <div class="form-group">
                     <label class="form-label">Team Name</label>
-                    <input type="text" class="form-input" name="teamName" required>
+                    <input type="text" class="form-input" required>
                 </div>
+                <!-- Team Lead Information -->
                 <div class="form-group">
                     <label class="form-label">Team Lead Name</label>
-                    <input type="text" class="form-input" name="teamLeadName" required>
+                    <input type="text" class="form-input" required>
                 </div>
                 <div class="form-group">
                     <label class="form-label">Team Lead Roll Number</label>
-                    <input type="text" class="form-input" name="teamLeadRollNumber" required>
+                    <input type="text" class="form-input" pattern="^[A-Za-z0-9]{10}$" title="Roll number must be 10 characters long and can contain letters and numbers" required>
                 </div>
                 <div class="form-group">
                     <label class="form-label">Team Lead Email</label>
-                    <input type="email" class="form-input" name="teamLeadEmail" required>
+                    <input type="email" class="form-input" required>
                 </div>
                 <div class="form-group">
                     <label class="form-label">Team Lead Phone Number</label>
-                    <input type="tel" class="form-input" name="teamLeadPhoneNumber" required>
+                    <input type="tel" class="form-input" pattern="[0-9]{10}" required>
                 </div>
                 <div class="form-group">
                     <label class="form-label">Team Size</label>
-                    <select class="form-select" name="teamSize" required>
+                    <select class="form-select" required id="team-size" onchange="generateTeamFields(this)">
                         <option value="">Select Size</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
-                        <option value="12">12</option>
-                        <option value="13">13</option>
-                        <option value="12">14</option>
-                        <!-- Other options -->
                     </select>
                 </div>
+                <div id="team-members"></div>
                 <button type="submit" class="submit-btn">Register Performance</button>
             </form>
-            
         </div>
     </div>
 
