@@ -1,2 +1,2 @@
-# 25-Years
-25 Years Website
+# Varadhaman 25
+Vardhaman College of Engineering - 25 Years Website
