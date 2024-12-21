@@ -42,16 +42,21 @@
         .nav-content {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 1rem 2rem;
+            padding: 0.5rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--primary-color);
+            height: 60px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-image {
+            height: 100%;
+            width: auto;
         }
 
         .nav-links {
@@ -123,13 +128,139 @@
             display: block;
             animation: fadeIn 0.5s ease;
         }
+        .sports-controls {
+            margin-bottom: 2rem;
+        }
+
+        /* Sports Section Styles */
+        .sport-selector {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-light);
+            padding: 0.8rem;
+            border-radius: 0.5rem;
+            width: 100%;
+            max-width: 300px;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+            outline: none;
+            max-height: 200px;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary-color) var(--card-bg);
+        }
+
+        .sport-selector option {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+        }
+        .sport-selector::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .sport-selector::-webkit-scrollbar-track {
+            background: var(--card-bg);
+            border-radius: 4px;
+        }
+
+        .sport-selector::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 4px;
+        }
+
+        .gender-selector {
+            margin-top: 1rem;
+            display: none; /* Hidden by default */
+            gap: 1.5rem;
+        }
+
+        .gender-selector label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+        }
+
+        .gender-selector input[type="radio"] {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 1.2rem;
+            height: 1.2rem;
+            border: 2px solid var(--primary-color);
+            border-radius: 50%;
+            margin: 0;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .gender-selector input[type="radio"]:checked::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 0.6rem;
+            height: 0.6rem;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+        }
+
+        .gender-selector span {
+            font-size: 1rem;
+        }
+
+        .tournament-section {
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .match-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .match-card.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .match-teams {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .match-details {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        .match-venue {
+            color: var(--primary-color);
+            margin-top: 0.5rem;
+        }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Schedule Styles */
+        /* Existing styles for day sections and events */
         .day-section {
             margin-bottom: 4rem;
             background-color: var(--card-bg);
@@ -239,70 +370,102 @@
 <body>
     <nav id="navbar">
         <div class="nav-content">
-            <div class="logo">ORTUS'25</div>
+            <div class="logo">
+                <img src="public/images/nav_logo.png" alt="nav_logo" class="logo-image">
+            </div>
             <div class="nav-links">
                 <a href="index.html">Home</a>
                 <a href="index.html#events">Events</a>
                 <a href="index.html#chief-guests">Guests</a>
-                <a href="index.html#food-stalls">Food</a>
-                <a href="registration.html">Register</a>
+                <a href="stalls.html">Stalls</a>
             </div>
         </div>
     </nav>
 
     <div class="tabs-container">
         <div class="tabs">
-            <button class="tab-btn active" data-tab="silver-jubilee">Silver Jubilee</button>
-            <button class="tab-btn" data-tab="ortus">ORTUS'25</button>
+            <button class="tab-btn active" data-tab="sports">Sports</button>
+            
         </div>
 
-        <!-- Silver Jubilee Schedule -->
-        <div id="silver-jubilee" class="tab-content active">
-            <div class="day-section">
-                <div class="day-header">
-                    <h2 class="day-title">Day 1 - December 26, 2024</h2>
-                </div>
-                <div class="events-grid">
-                    <div class="event-card">
-                        <div class="event-time">9:00 AM - 10:30 AM</div>
-                        <div class="event-details">
-                            <h3>Mitra-Alumini Meet</h3>
-                            <p>Mitra Alumni Meet unites 1999-2024 batches, celebrating memories and connections.</p>
-                            <div class="event-venue">📍 Main Auditorium</div>
-                        </div>
-                    </div>
-                    <div class="event-card">
-                        <div class="event-time">9:00 AM - 10:30 AM</div>
-                        <div class="event-details">
-                            <h3>Recruiters Meet</h3>
-                            <p>Recruiters Meet connects college recruiters and companies, strengthening partnerships and opportunities.</p>
-                            <div class="event-venue">📍 Main Auditorium</div>
-                        </div>
-                    </div>
-                    <div class="event-card">
-                        <div class="event-time">9:00 AM - 10:30 AM</div>
-                        <div class="event-details">
-                            <h3>Academic Leader Meet</h3>
-                            <p>Academic Leaders Meet unites Parent University leaders and college, fostering collaboration.</p>
-                            <div class="event-venue">📍 Main Auditorium</div>
-                        </div>
-                    </div>
-                    <div class="event-card">
-                        <div class="event-time">9:00 AM - 10:30 AM</div>
-                        <div class="event-details">
-                            <h3>Logo Launch</h3>
-                            <p>Get ready for the new Logo of our College</p>
-                            <div class="event-venue">📍 Main Auditorium</div>
-                        </div>
-                    </div>
-                    <!-- Add more events for Day 1 -->
+        <!-- Sports Section -->
+        <div id="sports" class="tab-content active">
+            <div class="sports-controls">
+                <select class="sport-selector" onchange="handleSportChange(this.value)">
+                    <option value="">Select Sport</option>
+                    <option value="cricket">Cricket - M</option>
+                    <option value="football">Football - M</option>
+                    <option value="volleyball">Volleyball</option>
+                    <option value="basketball">Basketball</option>
+                    <option value="throwball">Throwball -W</option>
+                    <option value="kho">kho-kho</option>
+                    <option value="dogeball">Dogeball - W</option>
+                    <option value="tennis">Table Tennis</option>
+                    <option value="shuttle1">Badminton (Singles)</option>
+                    <option value="shuttle2">Badminton (Doubles)</option>
+                </select>
+                <div id="gender-selector" class="gender-selector">
+                    <label>
+                        <input type="radio" name="gender" value="men" checked onchange="handleGenderChange(this.value)">
+                        <span>Men</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="gender" value="women" onchange="handleGenderChange(this.value)">
+                        <span>Women</span>
+                    </label>
                 </div>
             </div>
-            <!-- Add more days for Silver Jubilee -->
+            <div id="tournament-brackets"></div>
         </div>
 
-        <!-- ORTUS Schedule -->
-        <div id="ortus" class="tab-content">
+       <!-- Silver Jubilee Schedule -->
+       <div id="silver-jubilee" class="tab-content">
+        <div class="day-section">
+            <div class="day-header">
+                <h2 class="day-title">Day 1 - December 26, 2024</h2>
+            </div>
+            <div class="events-grid">
+                <div class="event-card">
+                    <div class="event-time">9:00 AM - 10:30 AM</div>
+                    <div class="event-details">
+                        <h3>Logo Launch</h3>
+                        <p>Get ready for the new Logo of our College</p>
+                        <div class="event-venue">📍 Main Auditorium</div>
+                    </div>
+                </div>
+                <div class="event-card">
+                    <div class="event-time">9:00 AM - 10:30 AM</div>
+                    <div class="event-details">
+                        <h3>Mitra-Alumini Meet</h3>
+                        <p>Mitra Alumni Meet unites 1999-2024 batches, celebrating memories and connections.</p>
+                        <div class="event-venue">📍 Main Auditorium</div>
+                    </div>
+                </div>
+                <div class="event-card">
+                    <div class="event-time">9:00 AM - 10:30 AM</div>
+                    <div class="event-details">
+                        <h3>Recruiters Meet</h3>
+                        <p>Recruiters Meet connects college recruiters and companies, strengthening partnerships and opportunities.</p>
+                        <div class="event-venue">📍 Main Auditorium</div>
+                    </div>
+                </div>
+                <div class="event-card">
+                    <div class="event-time">9:00 AM - 10:30 AM</div>
+                    <div class="event-details">
+                        <h3>Academic Leader Meet</h3>
+                        <p>Academic Leaders Meet unites Parent University leaders and college, fostering collaboration.</p>
+                        <div class="event-venue">📍 Main Auditorium</div>
+                    </div>
+                </div>
+                
+                <!-- Add more events for Day 1 -->
+            </div>
+        </div>
+        <!-- Add more days for Silver Jubilee -->
+    </div>
+
+          <!-- ORTUS Schedule -->
+          <div id="ortus" class="tab-content">
             <div class="day-section">
                 <div class="day-header">
                     <h2 class="day-title">Day 1 - March 15, 2025</h2>
@@ -353,6 +516,414 @@
     </div>
 
     <script>
+        // Tournament data
+        const sportsWithGenders = {
+        cricket: ['men'],
+        football: ['men'],
+        basketball: ['men', 'women'],
+        volleyball: ['men', 'women'],
+        throwball: ['women'],
+        kho: ['men', 'women'],
+        dogeball: ['women'],
+        tennis: ['men', 'women'],
+        shuttle1: ['men', 'women'],
+        shuttle2: ['men', 'women']
+    };
+
+    const tournamentData = {
+        cricket: {
+            men: {
+                preQuarterFinals: [
+                    { team1: "CSD", team2: "AI&DS", date: "2024-12-24", venue: "Cricket Stadium" },
+                    { team1: "MBA", team2: "AI&ML", date: "2024-12-23", venue: "Cricket Stadium" },
+                    { team1: "CSE -1", team2: "MECH", date: "2024-12-24", venue: "Cricket Stadium" },
+                    { team1: "CSM", team2: "CIVIL", date: "2024-12-23", venue: "Cricket Stadium" },
+                     ],
+                quarterFinals: [
+                    { team1: "IT {BYE}", team2: "PQ1", date: "2024-12-26", venue: "Cricket Stadium" },
+                    { team1: "PQ2", team2: "CSE -2 {BYE}", date: "2024-12-26", venue: "Cricket Stadium" },
+                    { team1: "ECE {BYE}", team2: "PQ3", date: "2024-12-26", venue: "Cricket Stadium" },
+                    { team1: "PQ4", team2: "EEE {BYE} ", date: "2024-12-24", venue: "Cricket Stadium" },
+                     ],
+                semiFinals: [
+                    { team1: "Winner QF2", team2: " Winner QF3", date: "2024-12-27", venue: "Cricket Stadium" },
+                    { team1: "Winner QF1", team2: "Winner  QF4", date: "2024-12-27", venue: "Cricket Stadium" }
+                ],
+                finals: [
+                    { team1: "Winner SF1", team2: "Winner SF2", date: "2024-12-27", venue: "Cricket Stadium" }
+                ]
+            },
+        },
+        // Add similar structure for other sports...
+        football: {
+            men: {
+                quarterFinals: [
+                    { team1: "Bulls", team2: "Huricanes", date: "2024-12-24", venue: "Hostel Football Ground" },
+                    { team1: "Warriors", team2: "Titans", date: "2024-12-24", venue: "Hostel Football Ground" },
+                     ],
+                semiFinals: [
+                    { team1: "Winner QF1", team2: "Pirates {BYE}", date: "2024-12-24", venue: "Hostel Football Ground" },
+                    { team1: "Winner QF2", team2: "Lions {BYE}", date: "2024-12-24", venue: "Hostel Football Ground" }
+                ],
+                finals: [
+                    { team1: "Winner SF1", team2: "Winner SF2", date: "2024-12-27", venue: "Hostel Football Ground" }
+                ]
+            },
+        },
+        volleyball: {
+            men: {
+                quarterFinals: [
+                    { team1: "Pirates", team2: "Lions", date: "2024-12-26", venue: "Hostel volleyball Ground" },
+                    { team1: "Warriors", team2: "Titans", date: "2024-12-26", venue: "Hostel volleyball Ground" },
+                     ],
+                semiFinals: [
+                    { team1: "Winner QF1", team2: "Hurricanes {BYE}", date: "2024-12-26", venue: "Hostel volleyball Ground" },
+                    { team1: "Winner QF2", team2: "Bulls {BYE}", date: "2024-12-26", venue: "Hostel volleyball Ground" }
+                ],
+                finals: [
+                    { team1: "Winner SF1", team2: "Winner SF2", date: "2024-12-27", venue: "Hostel volleyball Ground" }
+                ]
+            },
+           women: {
+                quarterFinals: [
+                    { team1: "Warriors", team2: "Bulls", date: "2024-12-24", venue: "Hostel volleyball Ground" },
+                    { team1: "Pirates", team2: "Lions", date: "2024-12-24", venue: "Hostel volleyball Ground" },
+                     ],
+                semiFinals: [
+                    { team1: "Winner QF1", team2: "Huricanes {BYE}", date: "2024-12-24", venue: "Hostel volleyball Ground" },
+                    { team1: "Winner QF2", team2: "Titans {BYE}", date: "2024-12-24", venue: "Hostel volleyball Ground" }
+                ],
+                finals: [
+                    { team1: "Winner SF1", team2: "Winner SF2", date: "2024-12-27", venue: "Hostel volleyball Ground" }
+                ]
+            },
+        },
+        basketball: {
+            men: {
+                quarterFinals: [
+                    { team1: "Lions", team2: "Huricanes", date: "2024-12-26", venue: "Hostel Ground" },
+                    { team1: "Bulls", team2: "Titans", date: "2024-12-26", venue: "Hostel Ground" },
+                     ],
+                semiFinals: [
+                    { team1: "Winner QF1", team2: "Warriors {BYE}", date: "2024-12-26", venue: "Hostel Ground" },
+                    { team1: "Winner QF2", team2: "Pirates {BYE}", date: "2024-12-26", venue: "Hostel Ground" }
+                ],
+                finals: [
+                    { team1: "Winner SF1", team2: "Winner SF2", date: "2024-12-27", venue: "Hostel Ground" }
+                ]
+            },
+           women: {
+                quarterFinals: [
+                    { team1: "Titans", team2: "Bulls", date: "2024-12-24", venue: "Hostel Ground" },
+                    { team1: "Pirates", team2: "Warriors", date: "2024-12-24", venue: "Hostel Ground" },
+                     ],
+                semiFinals: [
+                    { team1: "Winner QF1", team2: "Lions {BYE}", date: "2024-12-24", venue: "Hostel Ground" },
+                    { team1: "Winner QF2", team2: "Huricanes {BYE}", date: "2024-12-24", venue: "Hostel Ground" }
+                ],
+                finals: [
+                    { team1: "Winner SF1", team2: "Winner SF2", date: "2024-12-27", venue: "Hostel Ground" }
+                ]
+            },
+        },
+        throwball: {
+           women: {
+                quarterFinals: [
+                    { team1: "Pirates", team2: "Huricanes", date: "2024-12-24", venue: "Opp Block-5" },
+                    { team1: "Lions", team2: "Titans", date: "2024-12-24", venue: "Opp Block-5" },
+                     ],
+                semiFinals: [
+                    { team1: "Winner QF1", team2: "Warriors {BYE}", date: "2024-12-24", venue: "Opp Block-5" },
+                    { team1: "Winner QF2", team2: "Bulls {BYE}", date: "2024-12-24", venue: "Opp Block-5" }
+                ],
+                finals: [
+                    { team1: "Winner SF1", team2: "Winner SF2", date: "2024-12-27", venue: "Opp Block-5" }
+                ]
+            },
+        },
+        basketball: {
+            men: {
+                quarterFinals: [
+                    { team1: "Pirates", team2: "Huricanes", date: "2024-12-24", venue: "Hostel Ground" },
+                    { team1: "Titans", team2: "Lions", date: "2024-12-24", venue: "Hostel Ground" },
+                     ],
+                semiFinals: [
+                    { team1: "Winner QF1", team2: "Bulls {BYE}", date: "2024-12-24", venue: "Hostel Ground" },
+                    { team1: "Winner QF2", team2: "Warriors {BYE}", date: "2024-12-24", venue: "Hostel Ground" }
+                ],
+                finals: [
+                    { team1: "Winner SF1", team2: "Winner SF2", date: "2024-12-27", venue: "Hostel Ground" }
+                ]
+            },
+           women: {
+                quarterFinals: [
+                    { team1: "Titans", team2: "Warriors", date: "2024-12-24", venue: "Hostel Ground" },
+                    { team1: "Huricanes", team2: "Bulls", date: "2024-12-24", venue: "Hostel Ground" },
+                     ],
+                semiFinals: [
+                    { team1: "Winner QF1", team2: "Lions {BYE}", date: "2024-12-24", venue: "Hostel Ground" },
+                    { team1: "Winner QF2", team2: "Pirates{BYE}", date: "2024-12-24", venue: "Hostel Ground" }
+                ],
+                finals: [
+                    { team1: "Winner SF1", team2: "Winner SF2", date: "2024-12-27", venue: "Hostel Ground" }
+                ]
+            },
+        },
+        dogeball: {
+           women: {
+                quarterFinals: [
+                    { team1: "Huricanes", team2: "Bulls", date: "2024-12-24", venue: "Opp Block-5" },
+                    { team1: "Warriors", team2: "Titans", date: "2024-12-24", venue: "Opp Block-5" },
+                     ],
+                semiFinals: [
+                    { team1: "Winner QF1", team2: "Pirates {BYE}", date: "2024-12-24", venue: "Opp Block-5" },
+                    { team1: "Winner QF2", team2: "Lions{BYE}", date: "2024-12-24", venue: "Opp Block-5" }
+                ],
+                finals: [
+                    { team1: "Winner SF1", team2: "Winner SF2", date: "2024-12-27", venue: "Opp Block-5" }
+                ]
+            },
+        },
+        tennis: {
+            men: {
+                quarterFinals: [
+                    { team1: "Bulls", team2: "Warriors", date: "2024-12-24", venue: "Below Library" },
+                    { team1: "Lions", team2: "Pirates", date: "2024-12-24", venue: "Below Library" },
+                     ],
+                semiFinals: [
+                    { team1: "Winner QF1", team2: "Titans {BYE}", date: "2024-12-26", venue: "Below Library" },
+                    { team1: "Winner QF2", team2: "Huricanes {BYE}", date: "2024-12-26", venue: "Below Library" }
+                ],
+                finals: [
+                    { team1: "Winner SF1", team2: "Winner SF2", date: "2024-12-27", venue: "Below Library" }
+                ]
+            },
+           women: {
+                quarterFinals: [
+                    { team1: "Lions", team2: "Titans", date: "2024-12-24", venue: "Below Library" },
+                    { team1: "Huricanes", team2: "Pirates", date: "2024-12-24", venue: "Below Library" },
+                     ],
+                semiFinals: [
+                    { team1: "Winner QF1", team2: "Bulls {BYE}", date: "2024-12-24", venue: "Below Library" },
+                    { team1: "Winner QF2", team2: "Warriors {BYE}", date: "2024-12-24", venue: "Below Library" }
+                ],
+                finals: [
+                    { team1: "Winner SF1", team2: "Winner SF2", date: "2024-12-27", venue: "Below Library" }
+                ]
+            },
+        },
+        shuttle1: {
+            men: {
+                preQuarterFinals: [
+                    { team1: "Pirates -2", team2: "Huricanes -2", date: "2024-12-24", venue: "Indoor Stadium" },
+                    { team1: "Titans -2", team2: "Warriors -1", date: "2024-12-24", venue: "Indoor Stadium" },
+                    { team1: "Lions -1", team2: "Huricanes-1", date: "2024-12-24", venue: "Indoor Stadium" },
+                    { team1: "Warriors -2", team2: "Bulls -2", date: "2024-12-24", venue: "Indoor Stadium" },
+                     ],
+                quarterFinals: [
+                    { team1: "Bulls -1 {BYE}", team2: "PQ1", date: "2024-12-24", venue: "Indoor Stadium" },
+                    { team1: "PQ2", team2: "Lions -2 {BYE}", date: "2024-12-24", venue: "Indoor Stadium" },
+                    { team1: "Pirates -1 {BYE}", team2: "PQ3", date: "2024-12-24", venue: "Indoor Stadium" },
+                    { team1: "PQ4", team2: "Titans -1 {BYE} ", date: "2024-12-24", venue: "Indoor Stadium" },
+                     ],
+                semiFinals: [
+                    { team1: "Winner QF1", team2: " Winner QF2", date: "2024-12-27", venue: "Indoor Stadium" },
+                    { team1: "Winner QF3", team2: "Winner  QF4", date: "2024-12-27", venue: "Indoor Stadium" }
+                ],
+                finals: [
+                    { team1: "Winner SF1", team2: "Winner SF2", date: "2024-12-27", venue: "Indoor Stadium" }
+                ]
+            },
+           women:{
+                preQuarterFinals: [
+                    { team1: "Warriors -2", team2: "Titans -2", date: "2024-12-24", venue: "Indoor Stadium" },
+                    { team1: "Pirates -2", team2: "Bulls -1", date: "2024-12-24", venue: "Indoor Stadium" },
+                    { team1: "Bulls -2", team2: "Huricanes -2", date: "2024-12-24", venue: "Indoor Stadium" },
+                    { team1: "Lions -2", team2: "Pirates -1", date: "2024-12-24", venue: "Indoor Stadium" },
+                     ],
+                quarterFinals: [
+                    { team1: "Huricanes -1 {BYE}", team2: "PQ1", date: "2024-12-24", venue: "Indoor Stadium" },
+                    { team1: "PQ2", team2: "Lions -1 {BYE}", date: "2024-12-24", venue: "Indoor Stadium" },
+                    { team1: "Warriors -1 {BYE}", team2: "PQ3", date: "2024-12-24", venue: "Indoor Stadium" },
+                    { team1: "PQ4", team2: "Titans -1 {BYE} ", date: "2024-12-24", venue: "Indoor Stadium" },
+                     ],
+                semiFinals: [
+                    { team1: "Winner QF1", team2: " Winner QF2", date: "2024-12-27", venue: "Indoor Stadium" },
+                    { team1: "Winner QF3", team2: "Winner  QF4", date: "2024-12-27", venue: "Indoor Stadium" }
+                ],
+                finals: [
+                    { team1: "Winner SF1", team2: "Winner SF2", date: "2024-12-27", venue: "Indoor Stadium" }
+                ]
+            },
+        },
+        shuttle2: {
+            men: {
+                preQuarterFinals: [
+                    { team1: "Lions -1", team2: "Huricanes -2", date: "2024-12-24", venue: "Indoor Stadium" },
+                    { team1: "Titans -1", team2: "Pirates -2", date: "2024-12-24", venue: "Indoor Stadium" },
+                    { team1: "Huricanes -1", team2: "Warriors -1", date: "2024-12-24", venue: "Indoor Stadium" },
+                    { team1: "Lions -2", team2: "Bulls -1", date: "2024-12-24", venue: "Indoor Stadium" },
+                     ],
+                quarterFinals: [
+                    { team1: "Warriors -2 {BYE}", team2: "PQ1", date: "2024-12-26", venue: "Indoor Stadium" },
+                    { team1: "PQ2", team2: "Bulls -2 {BYE}", date: "2024-12-26", venue: "Indoor Stadium" },
+                    { team1: "Pirates -1 {BYE}", team2: "PQ3", date: "2024-12-26", venue: "Indoor Stadium" },
+                    { team1: "PQ4", team2: "Titans -2 {BYE} ", date: "2024-12-26", venue: "Indoor Stadium" },
+                     ],
+                semiFinals: [
+                    { team1: "Winner QF1", team2: " Winner QF2", date: "2024-12-26", venue: "Indoor Stadium" },
+                    { team1: "Winner QF3", team2: "Winner  QF4", date: "2024-12-26", venue: "Indoor Stadium" }
+                ],
+                finals: [
+                    { team1: "Winner SF1", team2: "Winner SF2", date: "2024-12-27", venue: "Indoor Stadium" }
+                ]
+            },
+           women:{
+                preQuarterFinals: [
+                    { team1: "Pirates -2", team2: "Huricanes -2", date: "2024-12-24", venue: "Indoor Stadium" },
+                    { team1: "Titans -2", team2: "Warriors -1", date: "2024-12-24", venue: "Indoor Stadium" },
+                    { team1: "Lions -1", team2: "Huricanes -1", date: "2024-12-24", venue: "Indoor Stadium" },
+                    { team1: "Warriors -2", team2: "Bulls -2", date: "2024-12-24", venue: "Indoor Stadium" },
+                     ],
+                quarterFinals: [
+                    { team1: "Bulls -1 {BYE}", team2: "PQ1", date: "2024-12-24", venue: "Indoor Stadium" },
+                    { team1: "PQ2", team2: "Lions -2 {BYE}", date: "2024-12-24", venue: "Indoor Stadium" },
+                    { team1: "Pirates -1 {BYE}", team2: "PQ3", date: "2024-12-24", venue: "Indoor Stadium" },
+                    { team1: "PQ4", team2: "Titans -1 {BYE} ", date: "2024-12-24", venue: "Indoor Stadium" },
+                     ],
+                semiFinals: [
+                    { team1: "Winner QF1", team2: " Winner QF2", date: "2024-12-27", venue: "Indoor Stadium" },
+                    { team1: "Winner QF3", team2: "Winner  QF4", date: "2024-12-27", venue: "Indoor Stadium" }
+                ],
+                finals: [
+                    { team1: "Winner SF1", team2: "Winner SF2", date: "2024-12-27", venue: "Indoor Stadium" }
+                ]
+            },
+        },
+        kho: {
+            men: {
+                quarterFinals: [
+                    { team1: "Pirates", team2: "Huricanes", date: "2024-12-24", venue: "Hostel Ground" },
+                    { team1: "Titans", team2: "Lions", date: "2024-12-24", venue: "Hostel Ground" },
+                     ],
+                semiFinals: [
+                    { team1: "Winner QF1", team2: "Bulls {BYE}", date: "2024-12-26", venue: "Hostel Ground" },
+                    { team1: "Winner QF2", team2: "Warriors {BYE}", date: "2024-12-26", venue: "Hostel Ground" }
+                ],
+                finals: [
+                    { team1: "Winner SF1", team2: "Winner SF2", date: "2024-12-27", venue: "Hostel Ground" }
+                ]
+            },
+           women: {
+                quarterFinals: [
+                    { team1: "Titans", team2: "Warriors", date: "2024-12-24", venue: "Hostel Ground" },
+                    { team1: "Huricanes", team2: "Bulls", date: "2024-12-24", venue: "Hostel Ground" },
+                     ],
+                semiFinals: [
+                    { team1: "Winner QF1", team2: "Lions {BYE}", date: "2024-12-24", venue: "Hostel Ground" },
+                    { team1: "Winner QF2", team2: "Pirates {BYE}", date: "2024-12-24", venue: "Hostel Ground" }
+                ],
+                finals: [
+                    { team1: "Winner SF1", team2: "Winner SF2", date: "2024-12-27", venue: "Hostel Ground" }
+                ]
+            },
+        },
+    };
+
+    
+
+
+
+    let currentSport = '';
+    let currentGender = 'men';
+
+    function handleSportChange(sport) {
+        currentSport = sport;
+        const genderSelector = document.getElementById('gender-selector');
+        
+        if (!sport) {
+            genderSelector.style.display = 'none';
+            document.getElementById('tournament-brackets').innerHTML = '';
+            return;
+        }
+
+        // Show/hide gender selector based on sport
+        const hasMultipleGenders = sportsWithGenders[sport]?.length > 1;
+        genderSelector.style.display = hasMultipleGenders ? 'flex' : 'none';
+        
+        // Reset gender to men or the only available gender
+        currentGender = sportsWithGenders[sport]?.[0] || 'men';
+        const radioInputs = document.querySelectorAll('input[name="gender"]');
+        radioInputs.forEach(input => {
+            if (input.value === currentGender) {
+                input.checked = true;
+            }
+        });
+
+        showTournament();
+    }
+
+    function handleGenderChange(gender) {
+        currentGender = gender;
+        showTournament();
+    }
+
+    function showTournament() {
+        if (!currentSport || !tournamentData[currentSport]?.[currentGender]) {
+            document.getElementById('tournament-brackets').innerHTML = '';
+            return;
+        }
+
+        const data = tournamentData[currentSport][currentGender];
+        let html = '';
+
+        if (data.preQuarterFinals?.length) {
+                html += `
+                    <div class="tournament-section">
+                        <h3 class="section-title">Pre-Quarter Finals</h3>
+                        ${generateMatchCards(data.preQuarterFinals)}
+                    </div>
+                `;
+            }
+
+        // Quarter Finals Section
+        if (data.quarterFinals?.length) {
+            html += `
+                <div class="tournament-section">
+                    <h3 class="section-title">Quarter Finals</h3>
+                    ${generateMatchCards(data.quarterFinals)}
+                </div>
+            `;
+        }
+
+        // Semi Finals Section
+        if (data.semiFinals?.length) {
+            html += `
+                <div class="tournament-section">
+                    <h3 class="section-title">Semi Finals</h3>
+                    ${generateMatchCards(data.semiFinals)}
+                </div>
+            `;
+        }
+
+        // Finals Section
+        if (data.finals?.length) {
+            html += `
+                <div class="tournament-section">
+                    <h3 class="section-title">Finals</h3>
+                    ${generateMatchCards(data.finals)}
+                </div>
+            `;
+        }
+
+        document.getElementById('tournament-brackets').innerHTML = html;
+        
+        // Observe new match cards
+        document.querySelectorAll('.match-card').forEach(card => {
+            observer.observe(card);
+        });
+    }
+
         // Tab switching functionality
         const tabBtns = document.querySelectorAll('.tab-btn');
         const tabContents = document.querySelectorAll('.tab-content');
@@ -370,7 +941,71 @@
             });
         });
 
-        // Intersection Observer for event cards animation
+        // Function to show tournament brackets
+        function showSportTournament(sport) {
+            if (!sport) {
+                document.getElementById('tournament-brackets').innerHTML = '';
+                return;
+            }
+
+            const data = tournamentData[sport];
+            let html = '';
+
+            if (data.preQuarterFinals?.length) {
+                html += `
+                    <div class="tournament-section">
+                        <h3 class="section-title">Pre-Quarter Finals</h3>
+                        ${generateMatchCards(data.preQuarterFinals)}
+                    </div>
+                `;
+            }
+
+            // Quarter Finals Section
+            html += `
+                <div class="tournament-section">
+                    <h3 class="section-title">Quarter Finals</h3>
+                    ${generateMatchCards(data.quarterFinals)}
+                </div>
+            `;
+
+            // Semi Finals Section
+            html += `
+                <div class="tournament-section">
+                    <h3 class="section-title">Semi Finals</h3>
+                    ${generateMatchCards(data.semiFinals)}
+                </div>
+            `;
+
+            // Finals Section
+            html += `
+                <div class="tournament-section">
+                    <h3 class="section-title">Finals</h3>
+                    ${generateMatchCards(data.finals)}
+                </div>
+            `;
+
+            document.getElementById('tournament-brackets').innerHTML = html;
+            
+            // Observe new match cards
+            document.querySelectorAll('.match-card').forEach(card => {
+                observer.observe(card);
+            });
+        }
+
+        // Function to generate match cards
+        function generateMatchCards(matches) {
+            return matches.map(match => `
+                <div class="match-card">
+                    <div class="match-teams">${match.team1} vs ${match.team2}</div>
+                    <div class="match-details">
+                        <div>Date: ${match.date}</div>
+                        <div class="match-venue">Venue: ${match.venue}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Intersection Observer for animations
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -382,7 +1017,7 @@
         });
 
         // Observe all event cards
-        document.querySelectorAll('.event-card').forEach(card => {
+        document.querySelectorAll('.event-card, .match-card').forEach(card => {
             observer.observe(card);
         });
 
