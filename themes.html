@@ -42,16 +42,21 @@
         .nav-content {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 1rem 2rem;
+            padding: 0.4rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--primary-color);
+            height: 60px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-image {
+            height: 100%;
+            width: auto;
         }
 
         .nav-links {
@@ -105,6 +110,7 @@
             display: flex;
             gap: 1rem;
             margin-bottom: 2rem;
+            justify-content: center;
         }
 
         .tab-btn {
@@ -122,28 +128,44 @@
             background-color: var(--primary-color);
         }
 
-        /* Table */
-        .table-container {
+        /* Cards Grid */
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            padding: 1rem 0;
+        }
+
+        .card {
             background-color: var(--card-bg);
-            border-radius: 0.5rem;
+            border-radius: 1rem;
+            padding: 2rem;
             border: 1px solid var(--border-color);
-            overflow: hidden;
+            transition: transform 0.3s ease;
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
+        .card:hover {
+            transform: translateY(-5px);
         }
 
-        th, td {
-            padding: 1rem;
-            text-align: left;
-            border-bottom: 1px solid var(--border-color);
+        .card-title {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: bold;
         }
 
-        th {
-            background-color: rgba(0, 0, 0, 0.2);
-            font-weight: 600;
+        .card-content {
+            color: var(--text-gray);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-venue {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid var(--border-color);
         }
 
         /* Responsive Design */
@@ -179,13 +201,25 @@
             .menu-btn.active .bar:nth-child(3) {
                 transform: rotate(45deg) translate(-5px, -6px);
             }
+
+            .cards-container {
+                grid-template-columns: 1fr;
+            }
+            .page-title {
+                text-align: center;
+                font-size: 2rem;
+                margin-bottom: 2rem;
+            }
+            
         }
     </style>
 </head>
 <body>
     <nav class="navbar">
         <div class="nav-content">
-            <div class="logo">ORTUS'25</div>
+            <div class="logo">
+                <img src="public/images/nav_logo.png" alt="nav_logo" class="logo-image">
+            </div>
             <div class="nav-links">
                 <a href="index.html">Home</a>
                 <a href="index.html#events">Live Now</a>
@@ -202,81 +236,74 @@
     </nav>
 
     <main class="main-content">
-        <h1 class="page-title">Department Information</h1>
+        <h1 class="page-title">Department-Wise Themes & Activities</h1>
         
         <div class="tabs">
             <button class="tab-btn active" data-tab="themes">Department Themes</button>
             <button class="tab-btn" data-tab="activities">Department Activities</button>
         </div>
 
-        <div class="table-container" id="themes-table">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Department</th>
-                        <th>Theme</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Computer Science</td>
-                        <td>Digital Innovation & AI</td>
-                    </tr>
-                    <tr>
-                        <td>Electronics</td>
-                        <td>Smart Systems & IoT</td>
-                    </tr>
-                    <tr>
-                        <td>Mechanical</td>
-                        <td>Sustainable Engineering</td>
-                    </tr>
-                    <tr>
-                        <td>Civil</td>
-                        <td>Green Infrastructure</td>
-                    </tr>
-                    <tr>
-                        <td>Information Technology</td>
-                        <td>Cloud & Cybersecurity</td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="cards-container" id="themes-cards">
+            <!-- Theme cards will be inserted here -->
         </div>
 
-        <div class="table-container" id="activities-table" style="display: none;">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Department</th>
-                        <th>Activity</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Computer Science</td>
-                        <td>Hackathon & Code Sprint</td>
-                    </tr>
-                    <tr>
-                        <td>Electronics</td>
-                        <td>Robotics Competition</td>
-                    </tr>
-                    <tr>
-                        <td>Mechanical</td>
-                        <td>CAD Design Challenge</td>
-                    </tr>
-                    <tr>
-                        <td>Civil</td>
-                        <td>Bridge Building Contest</td>
-                    </tr>
-                    <tr>
-                        <td>Information Technology</td>
-                        <td>CTF Security Challenge</td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="cards-container" id="activities-cards" style="display: none;">
+            <!-- Activity cards will be inserted here -->
         </div>
     </main>
 
     <script>
+        // Department data
+        const departmentData = {
+            themes: [
+                { department: "CSE", content: "Utopia" },
+                { department: "ECE", content: "Face in Frames" },
+                { department: "Mech", content: "Sankranthi Festival" },
+                { department: "Civil", content: "Village Theme" },
+                { department: "EEE", content: "Village Theme" },
+                { department: "CSD", content: "F.R.I.E.N.D.S" },
+                { department: "IT", content: "Entry with Flowers" },
+                { department: "CSM", content: "Movie & Red Carpet" },
+                { department: "AI&ML", content: "Halloween" },
+                { department: "AI&DS", content: "Social Media Tree" },
+                { department: "MBA", content: "" }
+            ],
+            activities: [
+                { department: "CSE", content: "Street Premier League (Galli Cricket)", venue: "5th Block Opp (Volleyball Court)" },
+                { department: "ECE", content: "Blow Balls", venue: "5th Block Lobby" },
+                { department: "Mech", content: "Snakes & Ladders", venue: "Block 3 Lobby" },
+                { department: "Civil", content: "Say the color,Not the word", venue: "2003" },
+                { department: "EEE", content: "Ghost House", venue: "Block-3" },
+                { department: "CSD", content: "Games of Gala", venue: "3006" },
+                { department: "IT", content: "Picture Puzzle", venue: "" },
+                { department: "CSM", content: "Live Art", venue: "3005" },
+                { department: "AI&ML", content: "Ballon Battlefield", venue: "Infront of New Building" },
+                { department: "AI&DS", content: "Rise to Top Challenge", venue: "" },
+                { department: "MBA", content: "", venue: "" }
+            ]
+        };
+
+        // Function to create cards
+        function createCards(data, containerId) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+            
+            data.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <h2 class="card-title">${item.department}</h2>
+                    <p class="card-content">${item.content}</p>
+                    ${item.venue ? `<p class="card-venue">📍 ${item.venue}</p>` : ''}
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Initialize cards
+        createCards(departmentData.themes, 'themes-cards');
+        createCards(departmentData.activities, 'activities-cards');
+
         // Mobile menu toggle
         const menuBtn = document.querySelector('.menu-btn');
         const navLinks = document.querySelector('.nav-links');
@@ -288,8 +315,8 @@
 
         // Tab switching
         const tabBtns = document.querySelectorAll('.tab-btn');
-        const themesTable = document.getElementById('themes-table');
-        const activitiesTable = document.getElementById('activities-table');
+        const themesCards = document.getElementById('themes-cards');
+        const activitiesCards = document.getElementById('activities-cards');
 
         tabBtns.forEach(btn => {
             btn.addEventListener('click', () => {
@@ -297,11 +324,11 @@
                 btn.classList.add('active');
 
                 if (btn.dataset.tab === 'themes') {
-                    themesTable.style.display = 'block';
-                    activitiesTable.style.display = 'none';
+                    themesCards.style.display = 'grid';
+                    activitiesCards.style.display = 'none';
                 } else {
-                    themesTable.style.display = 'none';
-                    activitiesTable.style.display = 'block';
+                    themesCards.style.display = 'none';
+                    activitiesCards.style.display = 'grid';
                 }
             });
         });
