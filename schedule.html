@@ -73,6 +73,13 @@
         .nav-links a:hover {
             color: var(--primary-color);
         }
+        .bar {
+            width: 25px;
+            height: 3px;
+            background-color: var(--text-light);
+            margin: 5px 0;
+            transition: 0.3s;
+        }
 
         /* Tabs Styles */
         .tabs-container {
@@ -366,39 +373,32 @@
             }
         }
     </style>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WWBNWEKT3V"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'G-WWBNWEKT3V');
-    </script>
 </head>
 <body>
     <nav id="navbar">
         <div class="nav-content">
             <div class="logo">
-                <img src="images/nav_logo.png" alt="nav_logo" class="logo-image">
+                <img src="public/images/nav_logo.png" alt="nav_logo" class="logo-image">
             </div>
             <div class="nav-links">
                 <a href="index.html">Home</a>
                 <a href="index.html#events">Events</a>
                 <a href="index.html#chief-guests">Guests</a>
-                <a href="stalls.html">Stalls</a>
+                <a href="index.html#food-stalls">Food</a>
+                <a href="registration.html">Register</a>
             </div>
         </div>
     </nav>
 
     <div class="tabs-container">
         <div class="tabs">
-            <button class="tab-btn active" data-tab="sports">Sports</button>
-            
+            <button class="tab-btn" data-tab="sports">Sports</button>
+            <button class="tab-btn active" data-tab="silver-jubilee">Silver Jubilee</button>
+            <button class="tab-btn" data-tab="ortus">ORTUS'25</button>
         </div>
 
         <!-- Sports Section -->
-        <div id="sports" class="tab-content active">
+        <div id="sports" class="tab-content">
             <div class="sports-controls">
                 <select class="sport-selector" onchange="handleSportChange(this.value)">
                     <option value="">Select Sport</option>
@@ -428,99 +428,201 @@
         </div>
 
        <!-- Silver Jubilee Schedule -->
-       <div id="silver-jubilee" class="tab-content">
+    <div id="silver-jubilee" class="tab-content active">
         <div class="day-section">
             <div class="day-header">
-                <h2 class="day-title">Day 1 - December 26, 2024</h2>
+                <h2 class="day-title">Day 1 - December 27, 2024</h2>
             </div>
             <div class="events-grid">
                 <div class="event-card">
-                    <div class="event-time">9:00 AM - 10:30 AM</div>
+                    <div class="event-time">10:00 AM - 04.00 PM</div>
                     <div class="event-details">
-                        <h3>Logo Launch</h3>
-                        <p>Get ready for the new Logo of our College</p>
-                        <div class="event-venue">📍 Main Auditorium</div>
+                        <h3>Faculty Sports & Games</h3>
+                        <p>Faculty Sports & Games fosters team spirit and physical fitness among faculty through engaging sports and recreational activities.</p>
+                        <div class="event-venue">📍 Campus</div>
                     </div>
                 </div>
                 <div class="event-card">
-                    <div class="event-time">9:00 AM - 10:30 AM</div>
+                    <div class="event-time">2:00 PM - 4:00 PM</div>
                     <div class="event-details">
-                        <h3>Mitra-Alumini Meet</h3>
-                        <p>Mitra Alumni Meet unites 1999-2024 batches, celebrating memories and connections.</p>
-                        <div class="event-venue">📍 Main Auditorium</div>
+                        <h3>Plantation Programme</h3>
+                        <p>Promoting environmental sustainability through dedicated tree planting and habitat restoration.</p>
+                        <div class="event-venue">📍 Campus</div>
                     </div>
                 </div>
-                <div class="event-card">
-                    <div class="event-time">9:00 AM - 10:30 AM</div>
-                    <div class="event-details">
-                        <h3>Recruiters Meet</h3>
-                        <p>Recruiters Meet connects college recruiters and companies, strengthening partnerships and opportunities.</p>
-                        <div class="event-venue">📍 Main Auditorium</div>
-                    </div>
-                </div>
-                <div class="event-card">
-                    <div class="event-time">9:00 AM - 10:30 AM</div>
-                    <div class="event-details">
-                        <h3>Academic Leader Meet</h3>
-                        <p>Academic Leaders Meet unites Parent University leaders and college, fostering collaboration.</p>
-                        <div class="event-venue">📍 Main Auditorium</div>
-                    </div>
-                </div>
-                
-                <!-- Add more events for Day 1 -->
             </div>
         </div>
-        <!-- Add more days for Silver Jubilee -->
+        
+        <div class="day-section">
+            <div class="day-header">
+                <h2 class="day-title">Day 2 - December 28, 2024</h2>
+            </div>
+            <div class="events-grid">
+                <div class="event-card">
+                    <div class="event-time">10:30 AM - 10:35 AM</div>
+                    <div class="event-details">
+                        <h3>Welcome Address</h3>
+                        <p>The Welcome Address sets the tone, greeting attendees with warmth and introducing the purpose of the gathering.</p>
+                        <div class="event-venue">📍 Main Auditorium</div>
+                    </div>
+                </div>
+                <div class="event-card">
+                    <div class="event-time">10:35 AM - 10:40 AM</div>
+                    <div class="event-details">
+                        <h3>Lighting of Lamp</h3>
+                        <p>Lighting the lamp symbolizes the dispelling of darkness and the beginning of wisdom and enlightenment.</p>
+                        <div class="event-venue">📍 Main Auditorium</div>
+                    </div>
+                </div>
+                <div class="event-card">
+                    <div class="event-time">10:40 AM - 10:45 AM</div>
+                    <div class="event-details">
+                        <h3>Launch of Logo</h3>
+                        <p>The Launch of the Logo marks a new identity, symbolizing vision, values, and aspirations.</p>
+                        <div class="event-venue">📍 Main Auditorium</div>
+                    </div>
+                </div>
+                <div class="event-card">
+                    <div class="event-time">10:45 AM - 10:50 AM</div>
+                    <div class="event-details">
+                        <h3>Release of Silver Jubilee Souvenir</h3>
+                        <p>The Release of the Silver Jubilee Souvenir celebrates 25 years of milestones, memories, and achievements.</p>
+                        <div class="event-venue">📍 Main Auditorium</div>
+                    </div>
+                </div>
+                <div class="event-card">
+                    <div class="event-time">10:50 AM - 11:00 AM</div>
+                    <div class="event-details">
+                        <h3>Inaugural Speech By Chairman sir</h3>
+                        <p>The Inaugural Speech by Chairman Sir sets the stage with inspiring words, vision, and guidance for the event.</p>
+                        <div class="event-venue">📍 Main Auditorium</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="day-section">
+            <div class="day-header">
+                <h2 class="day-title">Day 3 - December 29, 2024</h2>
+            </div> 
+            <div class="events-grid">
+                <div class="event-card">
+                    <div class="event-time">9:30 AM - 11:30 AM</div>
+                    <div class="event-details">
+                        <h3>Felicitation of Staff</h3>
+                        <p>Honor and celebrate the dedicated contributions of our staff with a special felicitation ceremony.</p>
+                        <div class="event-venue">📍 Main Auditorium</div>
+                    </div>
+                </div>
+                <div class="event-card">
+                    <div class="event-time">1:30 AM - 12:30 PM</div>
+                    <div class="event-details">
+                        <h3>Leadership Meet</h3>
+                        <p>A gathering of key leaders to discuss strategies, share insights, and foster collaboration for future growth.</p>
+                        <div class="event-venue">📍 Main Auditorium</div>
+                    </div>
+                </div>
+                <div class="event-card">
+                    <div class="event-time">2:00 PM - 3:00 PM</div>
+                    <div class="event-details">
+                        <h3>Alumni Meet</h3>
+                        <p>A reunion of alumni to reconnect, share experiences, and celebrate achievements while strengthening the bond with the institution.</p>
+                        <div class="event-venue">📍 Main Auditorium</div>
+                    </div>
+                </div>
+                <div class="event-card">
+                    <div class="event-time">3:00 PM - 3:30 PM</div>
+                    <div class="event-details">
+                        <h3>Felicitation of Roll of Honors</h3>
+                        <p>Recognizing and honoring individuals who have achieved outstanding excellence and contributions in their respective fields, as part of the Roll of Honors.</p>
+                        <div class="event-venue">📍 Main Auditorium</div>
+                    </div>
+                </div>
+                <div class="event-card">
+                    <div class="event-time">3:30 PM - 4:30 PM</div>
+                    <div class="event-details">
+                        <h3>Recruiters Meet</h3>
+                        <p>A gathering of recruiters and potential candidates to discuss job opportunities, recruitment processes, and career growth prospects.</p>
+                        <div class="event-venue">📍 Main Auditorium</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
     </div>
 
           <!-- ORTUS Schedule -->
           <div id="ortus" class="tab-content">
             <div class="day-section">
-                <div class="day-header">
-                    <h2 class="day-title">Day 1 - March 15, 2025</h2>
-                </div>
+         <div class="day-header">
+            <h2 class="day-title">Day 1 - December 28, 2024</h2>
+        </div>
                 <div class="events-grid">
+            <div class="event-card">
+                <div class="event-time">11:00 AM - 1:30 PM</div>
+                <div class="event-details">
+                    <h3>Cultural Activities</h3>
+                    <p>Kickoff of ORTUS'25 with special performances</p>
+                    <div class="event-venue">📍 Main Auditorium</div>
+                </div>
+            </div>
                     <div class="event-card">
-                        <div class="event-time">10:00 AM - 11:30 AM</div>
-                        <div class="event-details">
-                            <h3>Opening Ceremony</h3>
-                            <p>Kickoff of ORTUS'25 with special performances</p>
-                            <div class="event-venue">📍 Open Air Theatre</div>
-                        </div>
-                    </div>
-                    <div class="event-card">
-                        <div class="event-time">9:00 AM - 10:30 AM</div>
-                        <div class="event-details">
-                            <h3>Inauguration Ceremony</h3>
-                            <p>Grand opening of the Silver Jubilee celebrations</p>
-                            <div class="event-venue">📍 Main Auditorium</div>
-                        </div>
-                    </div><div class="event-card">
-                        <div class="event-time">9:00 AM - 10:30 AM</div>
-                        <div class="event-details">
-                            <h3>Inauguration Ceremony</h3>
-                            <p>Grand opening of the Silver Jubilee celebrations</p>
-                            <div class="event-venue">📍 Main Auditorium</div>
-                        </div>
-                    </div><div class="event-card">
-                        <div class="event-time">9:00 AM - 10:30 AM</div>
-                        <div class="event-details">
-                            <h3>Inauguration Ceremony</h3>
-                            <p>Grand opening of the Silver Jubilee celebrations</p>
-                            <div class="event-venue">📍 Main Auditorium</div>
-                        </div>
-                    </div><div class="event-card">
-                        <div class="event-time">9:00 AM - 10:30 AM</div>
-                        <div class="event-details">
-                            <h3>Inauguration Ceremony</h3>
-                            <p>Grand opening of the Silver Jubilee celebrations</p>
-                            <div class="event-venue">📍 Main Auditorium</div>
-                        </div>
-                    </div>
+                <div class="event-time">1:30 PM - 2:15 PM</div>
+                <div class="event-details">
+                    <h3>Lunch Break</h3>
+                    <p>Lunch Break provides a refreshing pause, offering an opportunity to relax, recharge, and network.</p>
+                    <div class="event-venue">📍 Main Auditorium</div>
+                </div>
+            </div>
+            <div class="event-card">
+                <div class="event-time">2:15 PM - 5:30 PM</div>
+                <div class="event-details">
+                    <h3>Cultural Activities</h3>
+                    <p>Continuation of ORTUS'25 with special performances</p>
+                    <div class="event-venue">📍 Main Auditorium</div>
+                </div>
+            </div>
+           <div class="event-card">
+                <div class="event-time">5:30 PM - 6:30 PM</div>
+                <div class="event-details">
+                    <h3>Cricket Final Match</h3>
+                    <p>The Cricket Final Match marks the culmination of skill, teamwork, and competition, crowning the ultimate champion.</p>
+                    <div class="event-venue">📍 Cricket Stadium</div>
+                </div>
+            </div>
                     <!-- Add more events for Day 1 -->
                 </div>
             </div>
             <!-- Add more days for ORTUS -->
+            <div class="day-section">
+            <div class="day-header">
+            <h2 class="day-title">Day 2 - December 29, 2024</h2>
+        </div>
+        <div class="events-grid">
+          <div class="event-card">
+                <div class="event-time">10:30 AM - 4:30 PM</div>
+                <div class="event-details">
+                    <h3>Department wise Fun Activities</h3>
+                    <p>Experience the different Department wise Activities </p>
+                    <div class="event-venue">📍 go through the dept tab</div>
+                </div>
+            </div>
+              <div class="event-card">
+                <div class="event-time">6:00 PM - 8:00 PM</div>
+                <div class="event-details">
+                    <h3>Live Concert by Mika Singh</h3>
+                    <p>Enjoy the Fascinating Concert by Mika Singh.</p>
+                    <div class="event-venue">📍 Hostel Ground</div>
+                </div>
+            </div>
+              <div class="event-card">
+                <div class="event-time">8:00 PM - 10:00 PM</div>
+                <div class="event-details">
+                    <h3>DJ Night</h3>
+                    <p>Enjoy the DJ with the friends.</p>
+                    <div class="event-venue">📍 Hostel Ground</div>
+                </div>
+            </div>
         </div>
     </div>
 
