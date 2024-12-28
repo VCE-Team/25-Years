@@ -442,6 +442,147 @@
             font-size: 0.813rem;
         }
 
+        #live-tracking {
+        background-color: #111827;
+        padding: 4rem 2rem;
+        position: relative;
+        overflow: hidden;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    #live-tracking::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(45deg, rgba(220, 38, 38, 0.1), transparent);
+        pointer-events: none;
+    }
+
+    .tracking-title {
+        font-size: 3rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, #fff 0%, #d1d5db 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 1.5rem;
+        letter-spacing: -0.025em;
+    }
+
+    .tracking-description {
+        font-size: 1.125rem;
+        line-height: 1.75;
+        color: #9ca3af;
+        margin-bottom: 2rem;
+        font-weight: 400;
+        letter-spacing: -0.01em;
+    }
+
+    .tracking-button-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .tracking-btn {
+        background: #1f2937;
+        color: #ffffff;
+        border: none;
+        padding: 0.875rem 1.75rem;
+        border-radius: 9999px;
+        font-weight: 600;
+        font-size: 0.875rem;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+        letter-spacing: 0.025em;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .tracking-btn:hover {
+        transform: translateY(-2px);
+        background: #2d3748;
+    }
+
+    .tracking-btn:hover .btn-glow {
+        opacity: 1;
+    }
+
+    .tracking-btn:active {
+        transform: translateY(0);
+    }
+
+    .tracking-btn-content {
+        display: flex;
+        align-items: center;
+        gap: 0.625rem;
+        position: relative;
+        z-index: 1;
+    }
+
+    .btn-text {
+        background: linear-gradient(135deg, #fff 0%, #e5e7eb 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .btn-glow {
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(220, 38, 38, 0.4) 0%, rgba(220, 38, 38, 0) 70%);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+        animation: rotate 4s linear infinite;
+    }
+
+    .live-pulse {
+        animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        color: #dc2626;
+    }
+
+    @keyframes pulse {
+        0%, 100% {
+            transform: scale(0.95);
+            opacity: 0.8;
+        }
+        50% {
+            transform: scale(1.05);
+            opacity: 1;
+        }
+    }
+
+    @keyframes rotate {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .tracking-title {
+            font-size: 2.25rem;
+        }
+
+        .tracking-description {
+            font-size: 1rem;
+        }
+
+        .tracking-btn {
+            width: auto;
+            min-width: 160px;
+            padding: 0.75rem 1.5rem;
+        }
+    }
+
         /* Chief Guests Section Styles */
         #chief-guests {
             padding: 5rem 2rem;
@@ -867,22 +1008,23 @@
             flex-direction: column;
             align-items: center;
             margin-top: 50px;
-            }
+        }
 
-            .countdown-title {
+        .countdown-title {
             color: var(--text-color);
             font-size: 1.5em;
             margin-bottom: 20px;
-            }
+        }
 
-            .countdown-card {
+        .countdown-card {
             background: var(--card-bg-gradient);
             width: var(--card-width);
             border-radius: 10px;
             padding: var(--card-padding);
             text-align: center;
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
-            }
+            margin-bottom: 2rem;
+        }
 
             .countdown-bg {
             height: 150px;
@@ -1226,7 +1368,27 @@
         </div>
     </section>
 
-    
+    <section id="live-tracking">
+        <div class="about-container">
+            <div class="about-content">
+                <h2 class="tracking-title">Live Event Tracking</h2>
+                <p class="tracking-description">Stay connected with real-time updates! Track ongoing events, performances, and activities happening across different venues. Never miss a moment of the Silver Jubilee celebrations with our live tracking feature.</p>
+                <p class="tracking-description">Note: Refresh the page regularly for real-time updates.</p>
+            </div>
+            <div class="tracking-button-container">
+                <button class="tracking-btn" onclick="window.location.href='live-now.html'">
+                    <span class="tracking-btn-content">
+                        <svg class="live-pulse" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <circle cx="12" cy="12" r="4"></circle>
+                        </svg>
+                        <span class="btn-text">Track Now</span>
+                    </span>
+                    <div class="btn-glow"></div>
+                </button>
+            </div>
+        </div>
+    </section>
 
     <section id="chief-guests">
         <h2>Chief Guests</h2>
@@ -1616,7 +1778,7 @@ const timer = setInterval(() => {
   // If the countdown is over
   if (distance < 0) {
     clearInterval(timer);
-    document.querySelector(".countdown-description").textContent = "The logo has been launched!";
+    document.querySelector(".countdown-description").textContent = "The logo will launch shortly...";
     document.querySelector(".countdown-timer").style.display = "none";
   }
 }, 1000);
